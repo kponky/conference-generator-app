@@ -18,6 +18,10 @@ const AttendeeDetails = () => {
   const [previewUrl, setPreviewUrl] = useState("");
   const [error, setError] = useState("");
 
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  // const [fileError, setFileError] = useState("");
+
   // Retrieve saved form data from localStorage on component mount
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("formData"));
@@ -46,32 +50,73 @@ const AttendeeDetails = () => {
     }
   };
 
+  // const handleNext = () => {
+  //   if (!name || !email || !selectedFile) {
+  //     setError("Please fill out all required fields");
+  //     return;
+  //   }
+
+  //   if (!validateEmail(email)) {
+  //     setError("Please enter a valid email address.");
+  //     return;
+  //   }
+
+  //   // Proceed to the next page
+  //   navigate("/ticket-booked", {
+  //     state: {
+  //       name,
+  //       email,
+  //       specialRequest,
+  //       avatarUrl: previewUrl,
+  //       selectedTicketType,
+  //       numberOfTickets,
+  //     },
+  //   });
+  // };
+
   const handleNext = () => {
-    // Validate all fields
-    if (!name || !email || !selectedFile) {
-      setError(
-        "Please fill out all required fields and upload a profile photo."
-      );
-      return;
+    let isValid = true;
+
+    // Validate name
+    if (!name) {
+      setNameError("Please enter a name");
+      isValid = false;
+    } else {
+      setNameError("");
     }
 
-    // Validate email format
-    if (!validateEmail(email)) {
-      setError("Please enter a valid email address.");
-      return;
+    // Validate email
+    if (!email) {
+      setEmailError("Please enter an email");
+      isValid = false;
+    } else if (!validateEmail(email)) {
+      setEmailError("Please enter a valid email");
+      isValid = false;
+    } else {
+      setEmailError("");
     }
 
-    // Proceed to the next page
-    navigate("/ticket-booked", {
-      state: {
-        name,
-        email,
-        specialRequest,
-        avatarUrl: previewUrl,
-        selectedTicketType,
-        numberOfTickets,
-      },
-    });
+    // Validate file upload
+    if (!selectedFile) {
+      setError("Please upload a profile photo.");
+      isValid = false;
+    } else {
+      setError("");
+    }
+
+    // If all validations pass, navigate to the next page
+    if (isValid) {
+      navigate("/ticket-booked", {
+        state: {
+          name,
+          email,
+          specialRequest,
+          avatarUrl: previewUrl,
+          selectedTicketType,
+          numberOfTickets,
+        },
+      });
+    }
   };
 
   const handleCancel = () => {
@@ -170,6 +215,7 @@ const AttendeeDetails = () => {
                   required
                 />
               </div>
+              {nameError && <p className="error-message">{nameError}</p>}
             </div>
             <div className="input-group">
               <label htmlFor="email">Enter your email *</label>
@@ -183,6 +229,7 @@ const AttendeeDetails = () => {
                   required
                 />
               </div>
+              {emailError && <p className="error-message">{emailError}</p>}
             </div>
 
             <div className="input-group">
@@ -212,3 +259,5 @@ const AttendeeDetails = () => {
 export default AttendeeDetails;
 
 // <button onClick={() => navigate("/attendee-details")}>Next</button>
+
+// const [error, setError] = useState("");

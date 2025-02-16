@@ -24,7 +24,12 @@ const TicketSelction = () => {
       setError("Please select a ticket type and enter the number of tickets.");
       return;
     }
-    navigate("/attendee-details");
+    navigate("/attendee-details", {
+      state: {
+        selectedTicketType,
+        numberOfTickets,
+      },
+    });
   };
 
   const handleCancel = () => {

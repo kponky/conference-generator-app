@@ -17,7 +17,7 @@
   display: flex;
   width: 100%;
   align-items: center;
-  
+
 }
 
 .progress-bar-heading {
@@ -127,7 +127,7 @@
 .ticket-details-container .attendee-frame .file-wrapper .file-wrap .file-upload-box .preview-container {
   width: 80%;
   height: 100%;
-  
+
 }
 
 .ticket-details-container .attendee-frame .file-wrapper .file-wrap .file-upload-box .preview-container .preview-image {
@@ -181,12 +181,28 @@
   color: #FAFAFA;
 }
 
+
+.ticket-details-container .attendee-frame form .input-group .input-field:focus{
+  border: 1px solid #078fa7;
+  background-color: red;
+
+
+}
+
 .ticket-details-container .attendee-frame form .input-group .input-field input {
   background: transparent;
   border: none;
   outline: none;
   color: #FAFAFA;
+  padding: 5px;
+  width: 100%;
+padding-block: 10px;
+border-radius: 12px;
+
+
 }
+
+
 
 .ticket-details-container .attendee-frame form .input-group .input-field input::placeholder {
   color: #FFF;
@@ -195,6 +211,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
+
 }
 
 .ticket-details-container .attendee-frame form .input-group textarea {
@@ -209,6 +226,12 @@
   background-color: transparent;
   resize: none;
   outline: none;
+  color: #FFF;
+}
+
+.ticket-details-container .attendee-frame form .input-group textarea:focus{
+  border: 1px solid #078fa7;
+
 }
 
 
@@ -269,16 +292,16 @@
   }
 
 
-  .ticket-details-container .attendee-frame{
+  .ticket-details-container .attendee-frame {
     width: 100%;
   }
 
-  .ticket-details-container .attendee-frame .file-wrapper{
+  .ticket-details-container .attendee-frame .file-wrapper {
     width: 100%;
   }
 
-  
-  .ticket-details-container .attendee-frame .file-wrapper .file-wrap{
+
+  .ticket-details-container .attendee-frame .file-wrapper .file-wrap {
     width: 100%;
     border: none;
     background: none;
@@ -287,7 +310,7 @@
   .ticket-details-container .attendee-frame .btns {
     display: flex;
     flex-direction: column;
-  
+
   }
 
 
